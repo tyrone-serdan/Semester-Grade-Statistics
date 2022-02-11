@@ -30,11 +30,10 @@ def calculatePercentileRank(zscore: float):
     return pRank + "%"
 
 def obtainZScore(sd: float):
-    zTable = misc.zTable
     zIndex = 0
     
     sheetData = pd.read_excel("Z Scores From 0 to 4.9.xlsx")
-    data = sheetData.to_dict()
+    zTable = sheetData.to_dict()
     
     firstTwoDigits = zTable.get('Z')
     
@@ -45,14 +44,24 @@ def obtainZScore(sd: float):
             break
         
         zIndex += 1
+    
+    for hundredthDigit in zTable:
+        if (hundredthDigit == 'Z'):
+            continue
+
+        sdLastDigit = misc.getLastDigit(sd)
+        getHundredthDigit = misc.getLastDigit(hundredthDigit)
         
-    print(zIndex)
+        findZScore = zTable[hundredthDigit]
+        
+        if (getHundredthDigit == sdLastDigit):
+            return findZScore[zIndex]
         
         
         
         
     
-obtainZScore(2.37)
+print(obtainZScore(2.37))
 
 # sScore = (calculateSample(85,70,15))
 # print(calculatePercentileRank(0.3413))
