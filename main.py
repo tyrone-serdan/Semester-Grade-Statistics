@@ -71,14 +71,24 @@ def obtainZScore(sd: float):
         if (getHundredthDigit == sdLastDigit):
             return findZScore[zIndex]
         
-         
-# subjects = misc.subjects
-# tyroneGrades = misc.tyroneGrades
 
-# print(calculateSample
-#                 (
-#                 tyroneGrades.get('REED'), 
-#                 subjects.get('REED').get('Mean'), 
-#                 subjects.get('REED').get('SD')
-#                 )
-#       )
+# CHANGE VALUES INSIDE .get() TO OTHER SUBJECTS TO GET OUTCOME
+      
+subjects = misc.subjects
+tyroneGrades = misc.tyroneGrades
+
+SD = (calculateSample
+                (
+                tyroneGrades.get('REED'), 
+                subjects.get('REED').get('Mean'), 
+                subjects.get('REED').get('SD')
+                )
+     )
+
+Z = obtainZScore(SD)
+
+rank = calculatePercentileRank(Z)
+
+print(SD)
+print(Z)
+print(rank)
