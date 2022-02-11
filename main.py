@@ -1,7 +1,4 @@
-# import pandas as pd
-# import numpy as np
-# import matplotlib.pyplot as plt
-import pandas as pd
+from pandas import read_excel
 import misc
 
 def calculateSample(x: float, x_: float, s: float):
@@ -13,7 +10,7 @@ def calculateSample(x: float, x_: float, s: float):
         s (int): Sample Standard Deviation
 
     Returns:
-        [int]: Returns a Float between 0 and 1
+        [int]: Returns the Standard Score
     """
     rawScore = x
     sampleMean = x_
@@ -25,6 +22,14 @@ def calculateSample(x: float, x_: float, s: float):
 
 
 def calculatePercentileRank(zscore: float):
+    """Calculates the Percentile Rank of the Z Score given
+
+    Args:
+        zscore (float): Z Score obtained from Standard Normal Table
+
+    Returns:
+        [str]: A string showing the rank in Percent
+    """
     pRank = str(zscore * 100)
     
     return pRank + "%"
@@ -40,7 +45,7 @@ def obtainZScore(sd: float):
     """
     zIndex = 0
     
-    sheetData = pd.read_excel("Z Scores From 0 to 4.9.xlsx")
+    sheetData = read_excel("Z Scores From 0 to 4.9.xlsx")
     zTable = sheetData.to_dict()
     
     firstTwoDigits = zTable.get('Z')
@@ -68,8 +73,3 @@ def obtainZScore(sd: float):
         
         
         
-    
-print(obtainZScore(2.37))
-
-# sScore = (calculateSample(85,70,15))
-# print(calculatePercentileRank(0.3413))
