@@ -1,3 +1,4 @@
+
 from pandas import read_excel
 import misc
 
@@ -17,7 +18,7 @@ def calculateSample(x: float, x_: float, s: float):
     sampleStandardDeviation = s
     
     standardScore = (rawScore - sampleMean) / sampleStandardDeviation
-    
+    standardScore = round(standardScore, 2)
     return standardScore
 
 
@@ -70,6 +71,14 @@ def obtainZScore(sd: float):
         if (getHundredthDigit == sdLastDigit):
             return findZScore[zIndex]
         
-        
-        
-        
+         
+# subjects = misc.subjects
+# tyroneGrades = misc.tyroneGrades
+
+# print(calculateSample
+#                 (
+#                 tyroneGrades.get('REED'), 
+#                 subjects.get('REED').get('Mean'), 
+#                 subjects.get('REED').get('SD')
+#                 )
+#       )
