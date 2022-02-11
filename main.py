@@ -5,7 +5,7 @@ import pandas as pd
 import misc
 
 def calculateSample(x: float, x_: float, s: float):
-    """ Calculates sample
+    """ Calculates Sample Standard Deviation
 
     Args:
         x (int): Raw Score
@@ -13,7 +13,7 @@ def calculateSample(x: float, x_: float, s: float):
         s (int): Sample Standard Deviation
 
     Returns:
-        [int]: Returns a Float number between 0 and 1
+        [int]: Returns a Float between 0 and 1
     """
     rawScore = x
     sampleMean = x_
@@ -25,11 +25,19 @@ def calculateSample(x: float, x_: float, s: float):
 
 
 def calculatePercentileRank(zscore: float):
-    pRank = str((0.5 + zscore) * 100)
+    pRank = str(zscore * 100)
     
     return pRank + "%"
 
 def obtainZScore(sd: float):
+    """This function references a Standard Normal Table created in Excel to determine the area to return
+
+    Args:
+        sd (float): Standard Deviation
+
+    Returns:
+        [int]: The area under the curve between the Mean z Standard Deviations above the Mean
+    """
     zIndex = 0
     
     sheetData = pd.read_excel("Z Scores From 0 to 4.9.xlsx")
