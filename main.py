@@ -1,6 +1,7 @@
 
 from pandas import read_excel
 import misc
+import show
 
 def calculateSC(x: float, x_: float, s: float):
     """ Calculates Sample Standard Deviation
@@ -35,8 +36,11 @@ def calculatePercentileRank(zscore: float):
     """
     # NOTE: The zscore provided from the table
     # has already added 0.5 to the value.
-    pRank = str(zscore * 100)
+    pRank = zscore * 100
     
+    # Turns Percentile Rank into 2 decimals
+    pRank = str(round(pRank, 2))
+
     return pRank + "%"
 
 def obtainZScore(standardScore: float):
@@ -78,11 +82,12 @@ def obtainZScore(standardScore: float):
 
 
 # These lines of code does the calculations for all the subjects
-# And prints out their result
+# And presents the Percentile Ranks to us.
 
 subjects = misc.subjects
 tyroneGrades = misc.tyroneGrades
 subjectsToCheck = ["REED","Literature","EarthScience","GenMath","Filipino","UCSP","MIL","OralComm","PE"]
+pRanks = []
 
 for subject in subjectsToCheck:
     standardScore = (calculateSC
@@ -97,8 +102,7 @@ for subject in subjectsToCheck:
 
     rank = calculatePercentileRank(Z)
 
-    print("Calculations for The Subject " + subject)
-    print("Standard Score = " + str(standardScore))
-    print("Z Score = " + str(Z))
-    print("Percentile Rank = " + str(rank))
-    print("========================")
+    pRanks.append(misc.changeToDecimal(rank))
+    
+
+show.showData([1,2,3,4,5,6,7,8,9], pRanks, subjectsToCheck)

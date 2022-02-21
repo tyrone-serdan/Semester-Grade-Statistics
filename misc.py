@@ -20,6 +20,12 @@ def removeDotInDecimal(digit: float):
     
     return newDigit
 
+def changeToDecimal(percent: str):
+    newDecimal = float(percent.replace("%", ''))
+    
+    return newDecimal
+    
+
 tyroneGrades = {
     "REED": 97.0,
     "Literature": 97.0,
